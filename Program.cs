@@ -10,12 +10,16 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
+            SortedStack sorter = new SortedStack();
             Stack s = new Stack();
-            s.push(19);
             s.push(10);
-            s.push(11);
-            s.pop();
-            Console.Write(s.peek());
+            s.push(12);
+            s.push(4);
+            s.push(22);
+            s.push(3);
+            s.push(153);
+            Stack sorted = sorter.sort(s);
+            sorter.print(sorted);
         }
     }
 }

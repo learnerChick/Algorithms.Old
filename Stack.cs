@@ -59,6 +59,11 @@ namespace Algorithms
             return n;
         }
 
+        public Boolean isEmpty()
+        {
+            return n == 0;
+        }
+
         public static void main()
         {
             Stack s = new Stack();

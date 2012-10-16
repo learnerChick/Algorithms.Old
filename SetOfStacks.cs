@@ -74,7 +74,7 @@ namespace Algorithms
             return list[totalStack - 1].Peek();
         }
 
-        public static void Main()
+        public static void main()
         {
             SetOfStacks s = new SetOfStacks();
             s.push(10);
