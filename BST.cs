@@ -189,7 +189,7 @@ namespace Algorithms
        
         /*
          * Inorder, postorder, preorder are depth first traversal.
-         * /
+         */
         //LVR, if a node is missing on left or right, parent will be visited
         //recursively visit the left, then print value, then recursively go to the right
         public void inorderTraversal()
