@@ -10,14 +10,18 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            GenericArrayStack<int> s = new GenericArrayStack<int>();
-            s.push(10);
-            s.push(20);
-            s.push(222);
-            s.pop();
-            Console.WriteLine(s.ToString());
-            s.push(45);
-            Console.WriteLine(s.ToString());
+            BST<int> bst = new BST<int>();
+            bst.add(200);
+            bst.add(1);
+            bst.add(31);
+            bst.add(4);
+            bst.add(500);
+            //Console.WriteLine(bst.find(31).Element);
+            //Console.WriteLine(bst.remove(31).Element);
+            //Console.WriteLine(bst.findMax().Element);
+            //bst.inorderTraversal();  /* 1 4 31 200 500 */
+            //bst.postorderTraversal();  /* 4 31 1 500 200 */
+            bst.breadthFirstTraversal();  /* 200 1 31 4 500 */
         }
     }
 }
