@@ -112,6 +112,41 @@ namespace Algorithms2
             return null;
         }
 
+        public Node<T> findMin()
+        {
+            return findMin(root);
+        }
+
+        //since it's a BST, you know left nodes will contain the smallest values.
+        public Node<T> findMin(Node<T> node)
+        {
+            if (node != null)
+            {
+                while (node.Left != null)
+                {
+                    node = node.Left;
+                }
+            }
+            return node;
+        }
+
+        public Node<T> findMax()
+        {
+            return findMax(root);
+        }
+
+        public Node<T> findMax(Node<T> node)
+        {
+            if (node != null)
+            {
+                while (node.Right != null)
+                {
+                    node = node.Right;
+                }
+            }
+            return node;
+        }
+
         public Node<T> remove(T element)
         {
             root = remove(element, root); 
@@ -148,6 +183,9 @@ namespace Algorithms2
             {
                 node = node.Left == null ? node.Right : node.Left;
             }
+
+            node.Count = 1 + size(node.Left) + size(node.Right);
+            
             return node;
         }
 
@@ -191,40 +229,7 @@ namespace Algorithms2
         }
 
        
-        public Node<T> findMin()
-        {
-            return findMin(root);
-        }
-
-        //since it's a BST, you know left nodes will contain the smallest values.
-        public Node<T> findMin(Node<T> node)
-        {
-            if (node != null)
-            {
-                while (node.Left != null)
-                {
-                    node = node.Left;
-                }
-            }
-            return node;
-        }
-
-        public Node<T> findMax()
-        {
-            return findMax(root);
-        }
-
-        public Node<T> findMax(Node<T> node)
-        {
-            if (node != null)
-            {
-                while (node.Right != null)
-                {
-                    node = node.Right;
-                }
-            }
-            return node;
-        }
+        
 
         /*  1. Check if value in current node and new value are equal
             2. If less: if current node has no left child, add there. Else, handle left child with same algorithm.
@@ -360,7 +365,6 @@ namespace Algorithms2
             //tree not balanced
             return false;
         }
-
 
         public static void main()
         {
