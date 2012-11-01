@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Algorithms2
+namespace Algorithms
 {
     /*--http://www.algolist.net/Data_structures/Binary_search_tree/Removal */
 
@@ -27,6 +27,11 @@ namespace Algorithms2
         public BST()
         {
             root = null;
+        }
+
+        public Node<T> getRoot()
+        {
+            return root;
         }
 
         //how many items in the tree
