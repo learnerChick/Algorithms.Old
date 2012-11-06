@@ -46,7 +46,7 @@ namespace Algorithms
         public void AddEdge(int start, int end)
         {
             if ((start < 0 || start >= totalVertices) || (end < 0 || end >= totalVertices) { 
-                throw new IndexOutOfRangeException;
+                throw new IndexOutOfRangeException();
             }
             totalEdges++;
             adjacentMatrix[start].Add(end);
