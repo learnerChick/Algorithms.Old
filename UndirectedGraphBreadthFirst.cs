@@ -9,10 +9,16 @@ namespace Algorithms
 {
     public class UndirectedGraphBreadthFirst
     {
-        bool[] marked;
+        private bool[] marked;
+        private int[] distTo; //number of edges in shortest path
+        private int[] edgeTo; //previous edge in shortest path
+
         public UndirectedGraphBreadthFirst(UndirectedGraph g, int vertex) 
         {
             marked = new bool[g.getTotalVertices()];
+            distTo = new int[g.getTotalVertices()];
+            edgeTo = new int[g.getTotalVertices()];
+
             search(g, vertex); 
         }
 
@@ -23,6 +29,7 @@ namespace Algorithms
             //set the first vertex into the queue first and mark it visited
             queue.Enqueue(vertex);
             marked[vertex] = true;
+            distTo[vertex] = 0;
 
             while (queue.Count > 0)
             {
@@ -34,9 +41,22 @@ namespace Algorithms
                     if (marked[currentVertex] != true)
                     {
                         queue.Enqueue(i);
+                        marked[currentVertex] = true;
+                        distTo[currentVertex] = distTo[i] + 1;
+                        edgeTo[currentVertex] = i;
                     }
                 }
             }
+        }
+
+        public Boolean pathExists(int vertex)
+        {
+            return marked[vertex];
+        }
+
+        public int distTo(int vertex)
+        {
+            return distTo[vertex];
         }
 
         public static void main()

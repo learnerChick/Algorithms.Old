@@ -22,6 +22,10 @@ namespace Algorithms
 
         public Queue<int> getPath()
         {
+            if (path.Count == 0)
+            {
+                return null;
+            }
             return path;
         }
 
