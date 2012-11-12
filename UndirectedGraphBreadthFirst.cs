@@ -10,53 +10,50 @@ namespace Algorithms
     public class UndirectedGraphBreadthFirst
     {
         private bool[] marked;
-        private int[] distTo; //number of edges in shortest path
-        private int[] edgeTo; //previous edge in shortest path
 
-        public UndirectedGraphBreadthFirst(UndirectedGraph g, int vertex) 
+        private int[] distanceMatrix; //number of edges in shortest path
+        private int[] pathMatrix; //previous edge in shortest path
+
+        public UndirectedGraphBreadthFirst(UndirectedGraph g)
         {
             marked = new bool[g.getTotalVertices()];
-            distTo = new int[g.getTotalVertices()];
-            edgeTo = new int[g.getTotalVertices()];
-
-            search(g, vertex); 
+            distanceMatrix = new int[g.getTotalVertices()];
+            pathMatrix = new int[g.getTotalVertices()];
         }
 
-        public void search(UndirectedGraph g, int vertex)
+        public int[] getShortestPath(UndirectedGraph g, int vertex)
         {
-            Queue<int> queue = new Queue<int>();
-            
-            //set the first vertex into the queue first and mark it visited
-            queue.Enqueue(vertex);
-            marked[vertex] = true;
-            distTo[vertex] = 0;
+            Queue<int> q = new Queue<int>();
+            q.Enqueue(vertex);
 
-            while (queue.Count > 0)
+            //set up the entire distance matrix with -1 except for the vertex node
+            for (int i = 0; i < g.getTotalVertices(); i++)
             {
-                int v = queue.Dequeue();
-                ArrayList adj = g.Adjacent(v);
-                for (int i = 0; i < adj.Count; i++)
+                distanceMatrix[i] = -1;
+            }
+            //set up current vertex with 0 because there will be no distance
+            distanceMatrix[vertex] = 0;
+
+            while (q.Count > 0)
+            {
+                int v = q.Dequeue();
+                Console.Write(v); //this is the breadth first traversal
+                ArrayList adjacent = g.Adjacent(v);
+                //loop through all the adjacent nodes, if the currentVertex is still -1, then go in and do process
+                for (int i = 0; i < adjacent.Count; i++)
                 {
-                    int currentVertex = (int)adj[i];
-                    if (marked[currentVertex] != true)
+                    int currentVertex = (int)adjacent[i];
+                    if (distanceMatrix[currentVertex] == -1)
                     {
-                        queue.Enqueue(i);
-                        marked[currentVertex] = true;
-                        distTo[currentVertex] = distTo[i] + 1;
-                        edgeTo[currentVertex] = i;
+                        //add one to the distanceMatrix here because it's going to be from v to the current path
+                        distanceMatrix[currentVertex] = distanceMatrix[v] + 1;
+                        pathMatrix[currentVertex] = v;
+                        q.Enqueue(currentVertex);
+
                     }
                 }
             }
-        }
-
-        public Boolean pathExists(int vertex)
-        {
-            return marked[vertex];
-        }
-
-        public int distTo(int vertex)
-        {
-            return distTo[vertex];
+            return distanceMatrix;
         }
 
         public static void main()
@@ -79,8 +76,10 @@ namespace Algorithms
             g.AddEdge(5, 3);
             g.AddEdge(5, 0);
 
-            UndirectedGraphBreadthFirst br = new UndirectedGraphBreadthFirst(g, 8);
-           
+            UndirectedGraphBreadthFirst br = new UndirectedGraphBreadthFirst(g);
+            int[] shortestPath = br.getShortestPath(g, 0);
+
+
         }
     }
 }

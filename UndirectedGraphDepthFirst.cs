@@ -6,6 +6,10 @@ using System.Collections;
 
 namespace Algorithms
 {
+    /*
+     * Runs in O(E+V) time 
+     */
+
     public class UndirectedGraphDepthFirst
     {
         private bool[] marked;
