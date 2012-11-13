@@ -12,6 +12,7 @@ namespace Algorithms
 
     public class UndirectedGraphDepthFirst
     {
+        //marked will hold all the vertics the vertes has path to.
         private bool[] marked;
         private int totalPaths;
         Queue<int> path;
@@ -33,6 +34,7 @@ namespace Algorithms
         }
 
 
+        //do a depth first search on a vertex to find out all the vertices it has a path to.  This also prints out all the vertices
         public void search(UndirectedGraph graph, int vertex)
         {
             totalPaths++;
