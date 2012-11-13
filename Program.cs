@@ -10,18 +10,10 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            BST<int> bst = new BST<int>();
-            bst.add(200);
-            bst.add(1);
-            bst.add(31);
-            bst.add(4);
-            bst.add(500);
-            //Console.WriteLine(bst.find(31).Element);
-            //Console.WriteLine(bst.remove(31).Element);
-            //Console.WriteLine(bst.findMax().Element);
-            //bst.inorderTraversal();  /* 1 4 31 200 500 */
-            //bst.postorderTraversal();  /* 4 31 1 500 200 */
-            bst.breadthFirstTraversal();  /* 200 1 31 4 500 */
+            int[] arr = { 2, 4, 6, 8, 11, 32, 58, 199 };
+            MinimalHeightBinaryTree minHeightTree = new MinimalHeightBinaryTree();
+            Node<int> tree = minHeightTree.add(arr, 0, arr.Length - 1);
+            
         }
     }
 }

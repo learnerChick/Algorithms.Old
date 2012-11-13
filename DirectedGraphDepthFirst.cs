@@ -63,7 +63,7 @@ namespace Algorithms
             g.AddEdge(6, 9);
             g.AddEdge(7, 6);
 
-            DirectedGraphDepthFirst dp = new DirectedGraphDepthFirst(g, 1);
+            DirectedGraphDepthFirst dp = new DirectedGraphDepthFirst(g, 2);
 
         }
 

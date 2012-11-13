@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -233,7 +234,29 @@ namespace Algorithms
             }
         }
 
-       
+
+        public Node<T> balanceTree()
+        {
+            T[] items = inorderTraversal();
+            root = balanceTree(items, 0, items.Length);
+            return root;
+        }
+
+        private Node<T> balanceTree(T[] items, int start, int end)
+        {
+            if (start > end)
+            {
+                return null;
+            }
+
+            int mid = start + (end - start) / 2;
+            Node<T> node = new Node<T>(items[mid]);
+            node.Left = balanceTree(items, start, mid - 1);
+            node.Right = balanceTree(items, start, mid - 1);
+
+            return node;
+        }
+
         
 
         /*  1. Check if value in current node and new value are equal
@@ -247,24 +270,30 @@ namespace Algorithms
          */
         //LVR, if a node is missing on left or right, parent will be visited
         //recursively visit the left, then print value, then recursively go to the right
-        public void inorderTraversal()
+        public T[] inorderTraversal()
         {
-            inorderTraversal(root);
+            ArrayList arr = new ArrayList();
+            return inorderTraversal(root, arr);
         }
 
-        public void inorderTraversal(Node<T> node)
+        public T[] inorderTraversal(Node<T> node, ArrayList arr)
         {
+            
             if (node.Left != null)
             {
-                inorderTraversal(node.Left);
+                inorderTraversal(node.Left, arr);
             }
-            
+
+            arr.Add(node.Element);
+
             Console.WriteLine(node.Element);
             
             if (node.Right != null)
             {
-                inorderTraversal(node.Right);
+                inorderTraversal(node.Right, arr);
             }
+
+            return (T[]) arr.ToArray(typeof(T));
         }
 
         //LRV (left, right, value, recursively)
