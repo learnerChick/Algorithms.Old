@@ -29,8 +29,8 @@ namespace Algorithms
             g.AddEdge(5, 0);
 
             UndirectedGraphBreadthFirst br = new UndirectedGraphBreadthFirst(g);
-            //int[] shortestPath = br.getShortestPath(g, 0);
-            br.bfs(g, 5);
+            int[] shortestPath = br.getShortestPath(g,5);
+            //br.bfs(g, 5);
         }
     }
 }

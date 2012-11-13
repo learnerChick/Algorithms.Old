@@ -10,15 +10,15 @@ namespace Algorithms
     public class UndirectedGraphBreadthFirst
     {
         /*
-         * 1)all vertices of G are first painted white
-	       2)the graph root is painted gray and put in a queue
+         * 1)all vertices of G are first painted Unvisited
+	       2)the graph root is painted Visiting and put in a queue
            3)while the queue is not empty{
 	        a) a vertex u is removed from the queue
-            b) for all white successors v of u{
-	            i. v is painted gray
+            b) for all Unvisited successors v of u{
+	            i. v is painted Visiting
 		        ii. v is added to the queue
 	        }
-	        c) u is painted black
+	        c) u is painted Visited
 	       }
          */
 
@@ -27,14 +27,16 @@ namespace Algorithms
         private int[] distanceMatrix; //number of edges in shortest path
         private int[] pathMatrix; //previous edge in shortest path
 
-        private int[] visitedMatrix;
+        private State[] visitedMatrix;
+        private enum State { Unvisited, Visited, Visiting };
+
 
         public UndirectedGraphBreadthFirst(UndirectedGraph g)
         {
             marked = new bool[g.getTotalVertices()];
             distanceMatrix = new int[g.getTotalVertices()];
             pathMatrix = new int[g.getTotalVertices()];
-            visitedMatrix = new int[g.getTotalVertices()];
+            visitedMatrix = new State[g.getTotalVertices()];
         }
 
         public void bfs(UndirectedGraph g, int vertex)
@@ -44,11 +46,11 @@ namespace Algorithms
             //set up the entire visitedMatrix with -1 except for the vertex node
             for (int i = 0; i < g.getTotalVertices(); i++)
             {
-                visitedMatrix[i] = -1;
+                visitedMatrix[i] = State.Unvisited;
             }
             
             //mark root with 1 to sat it's visited
-            visitedMatrix[vertex] = 1;
+            visitedMatrix[vertex] = State.Visiting;
             q.Enqueue(vertex);
 
             while (q.Count > 0)
@@ -63,13 +65,13 @@ namespace Algorithms
                 for (int i = 0; i < adj.Count; i++)
                 {
                     int currentVertex = (int) adj[i];
-                    if (visitedMatrix[currentVertex] == -1)
+                    if (visitedMatrix[currentVertex] == State.Unvisited)
                     {
                         q.Enqueue(currentVertex);
-                        visitedMatrix[currentVertex] = 1;
+                        visitedMatrix[currentVertex] = State.Visiting;
                     }
                 }
-                visitedMatrix[v] = 0;
+                visitedMatrix[v] = State.Visited;
                 marked[v] = false;
             }
         }
