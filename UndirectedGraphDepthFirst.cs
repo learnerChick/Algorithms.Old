@@ -16,12 +16,11 @@ namespace Algorithms
         private int totalPaths;
         Queue<int> path;
         
-        public UndirectedGraphDepthFirst(UndirectedGraph graph, int vertex)
+        public UndirectedGraphDepthFirst(UndirectedGraph graph)
         {
             marked = new bool[graph.getTotalVertices()];
             path = new Queue<int>();
-            totalPaths = 0;
-            search(graph, vertex);
+            totalPaths = 0;            
         }
 
         public Queue<int> getPath()
@@ -96,7 +95,9 @@ namespace Algorithms
             g.AddEdge(12, 11);
             g.AddEdge(12, 9);
 
-            UndirectedGraphDepthFirst depthFirst = new UndirectedGraphDepthFirst(g, 0);
+            UndirectedGraphDepthFirst depthFirst = new UndirectedGraphDepthFirst(g);
+            depthFirst.search(g, 8);
+
             Queue<int> q = depthFirst.getPath();
             Console.WriteLine("Path is: ");
             foreach (int value in q)
