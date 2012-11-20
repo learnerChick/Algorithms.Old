@@ -14,6 +14,7 @@ namespace Algorithms
         public Node<T> Right { get; set; }
         public T Element { get; set; }
         public int Count { get; set; }
+        public Node<T> Parent { get; set; }
 
         public Node(T item)
         {
@@ -84,10 +85,12 @@ namespace Algorithms
             else if ((element as IComparable).CompareTo(node.Element) < 0)
             {
                 node.Left = add(element, node.Left);
+                node.Left.Parent = node;
             }
             else if ((element as IComparable).CompareTo(node.Element) > 0)
             {
                 node.Right = add(element, node.Right);
+                node.Right.Parent = node;
             }
 
             node.Count = 1 + size(node.Left) + size(node.Right);
