@@ -7,13 +7,20 @@ using System.Text;
 namespace Algorithms
 {
     /*--http://www.algolist.net/Data_structures/Binary_search_tree/Removal */
+    /*
+     Insert, delete, search: O(log(N)) on average case, O(N) on worst case
+     * How long to insert N elements?
+        –Each insert costs O(log(N)).
+        –There are N inserts.
+        –Therefore, O(Nlog(N))
+     */
 
     public class Node<T>
     {
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
         public T Element { get; set; }
-        public int Count { get; set; }
+        public int Count { get; set; } //to store size
         public Node<T> Parent { get; set; }
 
         public Node(T item)
@@ -51,7 +58,7 @@ namespace Algorithms
                 return node.Count;
         }
 
-        //
+        
         public int height()
         {
             return height(root);
@@ -99,7 +106,7 @@ namespace Algorithms
         }
 
        
-
+        
         public Node<T> find(T element)
         {
             Node<T> current = root;
@@ -121,6 +128,32 @@ namespace Algorithms
             return null;
         }
 
+        public Node<T> findRecursive(T element)
+        {
+            return findRecursive(element, root);
+        }
+
+        public Node<T> findRecursive(T element, Node<T> node)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+            else if ((element as IComparable).CompareTo(node.Element) < 0)
+            {
+                return findRecursive(element, node.Left);
+            }
+            else if ((element as IComparable).CompareTo(node.Element) > 0)
+            {
+                return findRecursive(element, node.Right);
+            }
+            else if ((element as IComparable).CompareTo(node.Element) == 0)
+            {
+                return node;
+            }
+            return null;
+        }
+        
         public Node<T> findMin()
         {
             return findMin(root);
