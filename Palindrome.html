@@ -1,29 +1,59 @@
 ﻿<!doctype html5>
 <html>
-  <head>
-    <title>Graph</title>
-  </head>
-  <body>
-    <script>
-      function isPalindrome(str){
-       debugger;
-        if(typeof str === "undefined"){
-          return false;
-        }
+	<head>
+		<title>Functions JS</title>
+	</head>
+	<body>
+		<script>
+			//recursive palindrome detection
+			function isPalindrome(str) {
+				if ( typeof str === "undefined") {
+					return false;
+				}
 
-        if(str.length <= 1){
-          return true;
-        }
+				if (str.length <= 1) {
+					return true;
+				}
 
-        return isPalindrome(str.substr(1, str.length - 2));
-      }
+				return isPalindrome(str.substr(1, str.length - 2));
+			}
 
 
-      console.log(isPalindrome(""));
-      console.log(isPalindrome("a"));
-      console.log(isPalindrome("aa"));
-      console.log(isPalindrome("abba"));
-      console.log(isPalindrome("ISAPALINILAPASI "));
-    </script>
-  </body>
+			console.log(isPalindrome(""));
+			console.log(isPalindrome("a"));
+			console.log(isPalindrome("aa"));
+			console.log(isPalindrome("abba"));
+			console.log(isPalindrome("ISAPALINILAPASI "));
+			
+			
+			//memoization
+			var isPrime = function(val){
+				debugger;
+				if(!this.cache){
+					this.cache = {};
+				}
+				
+				if(typeof this.cache[val]  !== 'undefined'){
+					return this.cache[val];
+				}
+				
+				var prime = val != 1 //1 cannot be prime
+				
+				for(var i = 2; i < val; i++){
+					if(val % i === 0){
+						prime = false;
+						break;
+					}
+				}
+				
+				this.cache[val] = prime;
+				return this.cache[val];
+			};
+			
+			
+			console.log(isPrime(5));
+			console.log(isPrime(1));
+			console.log(isPrime(5));
+		</script>
+	</body>
 </html>
