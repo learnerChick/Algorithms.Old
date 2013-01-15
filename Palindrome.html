@@ -1,0 +1,29 @@
+﻿<!doctype html5>
+<html>
+  <head>
+    <title>Graph</title>
+  </head>
+  <body>
+    <script>
+      function isPalindrome(str){
+       debugger;
+        if(typeof str === "undefined"){
+          return false;
+        }
+
+        if(str.length <= 1){
+          return true;
+        }
+
+        return isPalindrome(str.substr(1, str.length - 2));
+      }
+
+
+      console.log(isPalindrome(""));
+      console.log(isPalindrome("a"));
+      console.log(isPalindrome("aa"));
+      console.log(isPalindrome("abba"));
+      console.log(isPalindrome("ISAPALINILAPASI "));
+    </script>
+  </body>
+</html>
