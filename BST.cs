@@ -260,11 +260,10 @@ namespace Algorithms
             {
                 if (node.Left != null)
                 {
-                    return findMinRecursive(node.Left);
+                    node = findMinRecursive(node.Left);
                 }
-                return node;
             }
-            return null;
+            return node;
         }
 
         public Node<T> removeMax(Node<T> node){
