@@ -215,7 +215,8 @@ namespace Algorithms
             //Since right tree now contains duplicate, remove the duplicate item in the right subtree
             else if (node.Left != null && node.Right != null)
             {
-                Node<T> minNode = findMin(node.Right);
+                //Node<T> minNode = findMin(node.Right);
+                Node<T> minNode = findMinRecursive(node.Right);
                 node.Element = minNode.Element;
                 node.Right = removeMin(node.Right);
             }
@@ -251,6 +252,19 @@ namespace Algorithms
             {
                 return node.Right;
             }
+        }
+
+        public Node<T> findMinRecursive(Node<T> node)
+        {
+            if (node != null)
+            {
+                if (node.Left != null)
+                {
+                    findMinRecursive(node.Left);
+                }
+                return node;
+            }
+            return null;
         }
 
         public Node<T> removeMax(Node<T> node){
