@@ -260,7 +260,7 @@ namespace Algorithms
             {
                 if (node.Left != null)
                 {
-                    findMinRecursive(node.Left);
+                    return findMinRecursive(node.Left);
                 }
                 return node;
             }
